@@ -3,19 +3,22 @@ import React, { Component } from "react";
 // import styled from "styled-components";
 import NoteList from "./NoteList";
 import * as Sentry from "@sentry/browser";
-import { ENVIRONMENT, RELEASE, VERSION } from "../utils/constants"
+import { ENVIRONMENT, RELEASE, VERSION, UUID } from "../utils/constants"
 
 class App extends Component {
   constructor(props) {
     super(props);
-
-    console.log("Initialing Sentry");
 
     // Initializing Sentry
     Sentry.init({
       dsn: "https://56a60e709a48484db373a4ca2f4cf026@sentry.io/1368219",
       environment: ENVIRONMENT,
       release: RELEASE + VERSION
+    });
+
+    Sentry.configureScope((scope) => {
+      scope.setUser({"id": UUID});
+      scope.setTag("App.js")
     });
   }
 

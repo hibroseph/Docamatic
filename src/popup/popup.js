@@ -8,7 +8,7 @@ import { Icon, Button, Breadcrumb } from "antd";
 import * as Sentry from "@sentry/browser";
 import { generateUUID } from "../utils/GenerateUUID";
 import { addNote } from "../redux/actions";
-import { ENVIRONMENT, RELEASE, VERSION } from "../utils/constants";
+import { ENVIRONMENT, RELEASE, VERSION, UUID } from "../utils/constants";
 import ErrorPopup from "../components/ErrorPopup/ErrorPopup";
 
 import NoResultsImage from "../assets/no_results.png";
@@ -25,6 +25,11 @@ class Popup extends Component {
       dsn: "https://56a60e709a48484db373a4ca2f4cf026@sentry.io/1368219",
       environment: ENVIRONMENT,
       release: RELEASE + VERSION
+    });
+
+    Sentry.configureScope((scope) => {
+      scope.setUser({"id": UUID});
+      scope.setTag("Popup")
     });
 
     this.state = {
@@ -44,7 +49,7 @@ class Popup extends Component {
 
   render() {
     let foundItem = false;
-
+    console.log("UUID of the user: " + UUID);
     let page = null;
 
     switch (this.state.page) {

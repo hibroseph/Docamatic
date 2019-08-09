@@ -2,3 +2,4 @@
 export const ENVIRONMENT = "development" 
 export const VERSION = "0.2.2"
 export const RELEASE = "sticky-notes@"
+export const UUID = localStorage.getItem("UUID-KEY")

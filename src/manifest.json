@@ -26,6 +26,7 @@
         "{{./components/Note/NoteBody/NoteBody.css}}",
         "{{./components/Note/NoteTitle/NoteTitle.css}}",
         "{{./components/ErrorPopup/ErrorPopupStyle.css}}"
+  
       ],
       "js": ["{{./index.js}}"]
     }
